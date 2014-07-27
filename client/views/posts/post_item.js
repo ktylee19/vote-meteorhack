@@ -12,7 +12,7 @@ Template.postItem.helpers({
     if (userId && !_.include(this.upvoters, userId)) {
       return 'btn-primary upvoteable';
     } else {
-      return 'disabled';
+      return 'btn-secondary upvoteable';
     }
   }
 });
