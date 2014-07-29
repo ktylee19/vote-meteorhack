@@ -5,6 +5,7 @@ Template.postSubmit.events({
     var post = {
       url: $(event.target).find('[name=url]').val(),
       title: $(event.target).find('[name=title]').val(),
+      team: $(event.target).find('[name=team]').val(),
       message: $(event.target).find('[name=message]').val()
     }
     

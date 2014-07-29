@@ -2,6 +2,11 @@ Template.postItem.helpers({
   ownPost: function() {
     return this.userId == Meteor.userId();
   },
+
+  isKatie: function() {
+    return Meteor.userId() == "Bgr6ZcYxWvxGmgr2R";
+  },
+
   domain: function() {
     var a = document.createElement('a');
     a.href = this.url;

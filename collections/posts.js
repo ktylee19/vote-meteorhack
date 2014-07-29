@@ -1,8 +1,12 @@
 Posts = new Meteor.Collection('posts');
 
 Posts.allow({
-  update: ownsDocument,
-  remove: ownsDocument
+  update: function() {
+    return (ownsDocument || isAdmin)
+  },
+  remove: function() {
+    return (ownsDocument || isAdmin)
+  }
 });
 
 Posts.deny({
@@ -24,6 +28,10 @@ Meteor.methods({
     // ensure the post has a title
     if (!postAttributes.title)
       throw new Meteor.Error(422, 'Please fill in a headline');
+
+    // ensure the post has a team
+    //if (!postAttributes.team)
+    //  throw new Meteor.Error(422, 'Please list team members');
     
     // check that there are no previous posts with the same link
     if (postAttributes.url && postWithSameLink) {
@@ -33,7 +41,7 @@ Meteor.methods({
     }
     
     // pick out the whitelisted keys
-    var post = _.extend(_.pick(postAttributes, 'url', 'title', 'message'), {
+    var post = _.extend(_.pick(postAttributes, 'url', 'title', 'team', 'message'), {
       userId: user._id, 
       author: user.username, 
       submitted: new Date().getTime(),
@@ -59,6 +67,7 @@ Meteor.methods({
       $addToSet: {upvoters: user._id},
       $inc: {votes: 1}
     });*/
-    Upvotemaps.update(postId);
+    //Upvotemaps.update(postId);
+    Meteor.call('updateUpvotemap',postId);
   }
 });

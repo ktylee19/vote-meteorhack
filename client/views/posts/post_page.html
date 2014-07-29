@@ -2,18 +2,15 @@
   {{#with currentPost}}
     {{> postItem}}
     <!--something about putting the message here-->
-    {{ message }}
-    
-    <ul class="comments">
-      {{#each comments}}
-        {{> comment}}
-      {{/each}}
-    </ul>
-    
-    {{#if currentUser}}
-      {{> commentSubmit}}
-    {{else}}
-      <p>Please log in to leave a comment.</p>
-    {{/if}}
+    <div class="post">
+      <!--<p>
+      	<b>Team:&nbsp;</b>
+      	{{ team }}
+      </p>-->
+      <p>
+	      <b>Description:&nbsp;</b>
+	      {{ message }}
+	  </p>
+    </div>
   {{/with}}
 </template>

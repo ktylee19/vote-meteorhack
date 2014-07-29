@@ -7,4 +7,5 @@ Deps.autorun(function() {
   Meteor.subscribe('comments', Session.get('currentPostId'));
 })
 
-Meteor.subscribe('notifications');
+//Meteor.subscribe('notifications');
+Meteor.subscribe('upvotemaps');
